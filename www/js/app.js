@@ -30,8 +30,46 @@ angular.module('starter', ['ionic', 'ngCordova'])
     
     $urlRouterProvider.otherwise("/signin");
 })
+
+
+
  .controller('SignInCtrl', function($scope, $state, $http, $rootScope,$ionicLoading,$filter,$ionicPopup, $timeout,$cordovaSQLite) {
- 	alert("Signg In Controller :"+loaduserid);
+// $scope.user = { uname:'era@mybank.com'};
+ 
+ document.addEventListener('deviceready', function () {
+	db = $cordovaSQLite.openDB({ name: "bankasiadb.db" });
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS useridinfo (user_id text)");
+ //alert("Deviec Ready"+db);
+	     var query = "SELECT user_id FROM useridinfo";
+        $cordovaSQLite.execute(db, query).then(function(res) {
+            if(res.rows.length > 0) {
+			
+                //console.log("SELECTED -> " + res.rows.item(0).firstname + " " + res.rows.item(0).lastname);
+			//alert("user ID :"+res.rows.item(0).user_id);
+				//$scope.setloaduserid = res.rows.item(0).user_id;
+					//$scope.user = { uname:	res.rows.item(0).user_id};
+					//alert("user ID :"+loaduserid);	
+					$scope.user = { uname:res.rows.item(0).user_id};
+					//alert("User:"+$scope.user);
+            } else {
+                console.log("No results found");
+            }
+        }, function (err) {
+            console.error(err);
+        });
+ })
+ 
+ 
+ /*
+ 
+document.addEventListener("deviceready", function() {
+    // retrieve the DOM element that had the ng-app attribute
+   // var domElement = document.getElementById(...) / document.querySelector(...);
+    //angular.bootstrap(domElement, ["angularAppName"]);
+	alert("deviec Ready");
+}, false);
+*/
+ 	//alert("Signg In Controller :"+loaduserid);
  
  	$scope.uid = function() {
 	//alert("init");
@@ -40,7 +78,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
             if(res.rows.length > 0) {
                 //console.log("SELECTED -> " + res.rows.item(0).firstname + " " + res.rows.item(0).lastname);
 				//alert("user ID :"+res.rows.item(0).user_id);
-				$scope.loaduserid = res.rows.item(0).user_id;
+				//$scope.loaduserid = res.rows.item(0).user_id;
 					//$scope.user = { uname:	res.rows.item(0).user_id};
 						
             } else {
@@ -50,12 +88,9 @@ angular.module('starter', ['ionic', 'ngCordova'])
             console.error(err);
         });
     }
-	$scope.uid2 = function() {
-//$scope.loaduserid='era@mybank.com';
-	}
-	//$scope.uid();
+
 	
-	$scope.user = { uname:loaduserid};
+	
 		
 		
  	$scope.login= function (user) {
@@ -135,7 +170,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-	db = $cordovaSQLite.openDB({ name: "bankasiadb.db" });
+/*	db = $cordovaSQLite.openDB({ name: "bankasiadb.db" });
     $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS useridinfo (user_id text)");
 	
 	       var query = "SELECT user_id FROM useridinfo";
@@ -145,13 +180,15 @@ angular.module('starter', ['ionic', 'ngCordova'])
 				//alert("user ID :"+res.rows.item(0).user_id);
 				loaduserid = res.rows.item(0).user_id;
 					//$scope.user = { uname:	res.rows.item(0).user_id};
-					alert("user ID :"+loaduserid);	
+					//alert("user ID :"+loaduserid);	
             } else {
                 console.log("No results found");
             }
         }, function (err) {
             console.error(err);
-        });
+        });*/
+		
+		//alert("Run Deviec");
 		
   });
 })
