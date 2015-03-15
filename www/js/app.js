@@ -60,36 +60,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
  })
  
  
- /*
- 
-document.addEventListener("deviceready", function() {
-    // retrieve the DOM element that had the ng-app attribute
-   // var domElement = document.getElementById(...) / document.querySelector(...);
-    //angular.bootstrap(domElement, ["angularAppName"]);
-	alert("deviec Ready");
-}, false);
-*/
- 	//alert("Signg In Controller :"+loaduserid);
- 
- 	$scope.uid = function() {
-	//alert("init");
-        var query = "SELECT user_id FROM useridinfo";
-        $cordovaSQLite.execute(db, query).then(function(res) {
-            if(res.rows.length > 0) {
-                //console.log("SELECTED -> " + res.rows.item(0).firstname + " " + res.rows.item(0).lastname);
-				//alert("user ID :"+res.rows.item(0).user_id);
-				//$scope.loaduserid = res.rows.item(0).user_id;
-					//$scope.user = { uname:	res.rows.item(0).user_id};
-						
-            } else {
-                console.log("No results found");
-            }
-        }, function (err) {
-            console.error(err);
-        });
-    }
 
-	
 	
 		
 		
