@@ -55,7 +55,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
 	}
 	//$scope.uid();
 	
-	$scope.user = { uname:'era@mybank.com'};
+	$scope.user = { uname:loaduserid};
 		
 		
  	$scope.login= function (user) {
