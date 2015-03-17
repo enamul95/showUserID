@@ -16,5 +16,5 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
-  <gap:plugin name="com.brodysoft.sqliteplugin" version="1.0.4" />
+  
 </widget>
